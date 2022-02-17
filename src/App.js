@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios'
 import Coin from './Coin.js';
 
+
 function App() {
 
   const [coins, setCoins] = useState([])
@@ -26,23 +27,23 @@ function App() {
   return (
     <div className="coin-app">
       <div className="coin-search">
-        <h1 className="coin-text">Search the Crypto</h1>  
+        <h1 className="coin-text">Search the Crypto</h1>
         <form action="">
-          <input type="text" placeholder="Search" className="coin-input" onChange={handleChange}/>
+          <input type="text" placeholder="Search" className="coin-input" onChange={handleChange} />
         </form>
       </div>
       {filteredCoin.map(coin => {
-        return(
-          <Coin 
-          key={coin.id} 
-          name={coin.name} 
-          image={coin.image} 
-          symbol = {coin.symbol} 
-          volume={coin.total_volume} 
-          price={coin.current_price} 
-          priceChange={coin.price_change_percentage_24h}
-          marketcap ={coin.market_cap}
-          /> 
+        return (
+          <Coin
+            key={coin.id}
+            name={coin.name}
+            image={coin.image}
+            symbol={coin.symbol}
+            volume={coin.total_volume}
+            price={coin.current_price}
+            priceChange={coin.price_change_percentage_24h}
+            marketcap={coin.market_cap}
+          />
         )
       })}
     </div>
