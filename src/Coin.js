@@ -4,12 +4,12 @@ import CoinChart from './CoinChart';
 
 const Coin = ({ image, name, symbol, price, volume, priceChange, marketcap }) => {
 
-    const [activeGraph, setActiveGraph] = useState(false);
+    const [style, setStyle] = useState('chart-view-passive')
 
     const showGraph = () => {
-        activeGraph === false ?
-            setActiveGraph(true)
-            : setActiveGraph(false)
+        style === 'chart-view-passive' ?
+            setStyle('chart-view-active') :
+            setStyle('chart-view-passive')
     }
 
     return (
@@ -36,7 +36,7 @@ const Coin = ({ image, name, symbol, price, volume, priceChange, marketcap }) =>
                     </div>
                 </div>
             </div>
-            {activeGraph === true ? <CoinChart /> : <div></div>}
+            {style === 'chart-view-active' ? <div className={style}><CoinChart /></div> : <div></div>}
         </div>
     )
 }

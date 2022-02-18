@@ -33,9 +33,7 @@ const CoinChart = () => {
         }
     }, [])
     return (
-        <div className="coin-chart-container" >
-            <canvas ref={chartRef} id="myChart" width="400" height="400"></canvas>
-        </div>
+        <canvas ref={chartRef} id="myChart" width="400" height="400"></canvas>
     )
 }
 

@@ -1,5 +1,11 @@
-.coin-chart-container {
-  margin: 20px auto;
+.chart-view-passive {
+  display: none;
+}
+
+.chart-view-active {
+  margin: 20px auto 30px auto;
   width: 400px;
   height: 400px;
+  display: block;
+  transition: all 1s ease;
 }
