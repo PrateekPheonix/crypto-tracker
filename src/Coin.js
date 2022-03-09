@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './coin.css'
-import CoinChart from './CoinChart';
+import CoinChartData from './CoinChartData';
+import { IdContext } from './context/IdContext'
 
-const Coin = ({ image, name, symbol, price, volume, priceChange, marketcap }) => {
+const Coin = ({ id, image, name, symbol, price, volume, priceChange, marketcap }) => {
 
     const [style, setStyle] = useState('chart-view-passive')
+    const [coinId, setCoinId] = useContext(IdContext)
 
     const showGraph = () => {
         style === 'chart-view-passive' ?
             setStyle('chart-view-active') :
             setStyle('chart-view-passive')
+        setCoinId(id)
     }
 
     return (
@@ -36,7 +39,7 @@ const Coin = ({ image, name, symbol, price, volume, priceChange, marketcap }) =>
                     </div>
                 </div>
             </div>
-            {style === 'chart-view-active' ? <div className={style}><CoinChart /></div> : <div></div>}
+            {style === 'chart-view-active' ? <div className={style}> <CoinChartData /> </div> : <div></div>}
         </div>
     )
 }

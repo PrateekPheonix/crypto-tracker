@@ -1,39 +1,85 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
+import 'chartjs-adapter-moment';
 import Chart from 'chart.js/auto'
 import './coinChart.css'
 
-const CoinChart = () => {
+const CoinChart = ({ data }) => {
     const chartRef = useRef()
+    const { day, week, year } = data
+
+    const [timeFormat, setTimeFormat] = useState("24h");
+    console.log(timeFormat)
+    const determineTimeFormat = () => {
+        switch (timeFormat) {
+            case "24h":
+                return day;
+            case "7d":
+                return week;
+            case "1y":
+                return year;
+            default:
+                return day;
+        }
+    };
+    console.log(determineTimeFormat())
     useEffect(() => {
         if (chartRef && chartRef.current) {
             const chartInstance = new Chart(chartRef.current, {
                 type: 'line',
                 data: {
-                    datasets: [{
-                        label: 'My First Dataset',
-                        data: [
-                            { x: 1, y: 15 },
-                            { x: 2, y: 12 },
-                            { x: 3, y: 24 }
-                        ],
-                        backgroundColor: "rgba(174, 305, 194, 0.5)",
-                        borderColor: "rgba(174, 305, 194, 0.4",
-                        pointRadius: 0,
-                    }]
+                    datasets: [
+                        {
+                            label: 'Price',
+                            data: determineTimeFormat(),
+                            showLine: true,
+                            backgroundColor: "rgba(53, 255, 105,0.7)",
+                            borderColor: "rgba(53, 255, 105,0.7)",
+                            pointRadius: 0,
+                        }
+                    ]
                 },
                 options: {
+                    lineHeightAnnotation: {
+                        always: true,
+                        hover: false,
+                        lineWeight: 1.5,
+                    },
+                    parsing: {
+                        xAxisKey: 't',
+                    },
+
+                    animation: {
+                        duration: 2000,
+                    },
+                    maintainAspectRatio: false,
+                    responsive: true,
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
+                        x: {
+                            type: "time",
+                            distribution: "linear",
+                        },
+                    },
                 }
             })
             console.log(chartInstance)
         }
+        // eslint-disable-next-line
     }, [])
     return (
-        <canvas ref={chartRef} id="myChart" width="400" height="400"></canvas>
+        <>
+            <canvas ref={chartRef} id="myChart" width={800} height={400}></canvas>
+            <div className='time-button'>
+                <button onClick={() => setTimeFormat("24h")}>
+                    24 Hrs
+                </button>
+                <button onClick={() => setTimeFormat("7d")}>
+                    7 Days
+                </button>
+                <button onClick={() => setTimeFormat("1y")}>
+                    1 Year
+                </button>
+            </div>
+        </>
     )
 }
 
