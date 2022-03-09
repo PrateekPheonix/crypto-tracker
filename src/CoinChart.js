@@ -42,7 +42,7 @@ const CoinChart = ({ data }) => {
                     lineHeightAnnotation: {
                         always: true,
                         hover: false,
-                        lineWeight: 1.5,
+                        lineWeight: 2,
                     },
                     parsing: {
                         xAxisKey: 't',
@@ -62,9 +62,11 @@ const CoinChart = ({ data }) => {
                 }
             })
             console.log(chartInstance)
+
+            return () => { chartInstance.destroy() }
         }
-        // eslint-disable-next-line
-    }, [])
+
+    }, [timeFormat])
     return (
         <>
             <canvas ref={chartRef} id="myChart" width={800} height={400}></canvas>
