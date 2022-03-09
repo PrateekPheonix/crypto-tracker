@@ -6,6 +6,7 @@ import { IdContext } from './context/IdContext'
 const CoinChartData = () => {
     const [coinData, setCoinData] = useState({})
     const [isLoading, setIsLoading] = useState(false);
+    // eslint-disable-next-line
     const [coinId, setCoinId] = useContext(IdContext)
     const id = coinId
     console.log(id)

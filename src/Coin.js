@@ -6,6 +6,7 @@ import { IdContext } from './context/IdContext'
 const Coin = ({ id, image, name, symbol, price, volume, priceChange, marketcap }) => {
 
     const [style, setStyle] = useState('chart-view-passive')
+    // eslint-disable-next-line
     const [coinId, setCoinId] = useContext(IdContext)
 
     const showGraph = () => {

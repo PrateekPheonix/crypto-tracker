@@ -65,7 +65,7 @@ const CoinChart = ({ data }) => {
 
             return () => { chartInstance.destroy() }
         }
-
+        // eslint-disable-next-line
     }, [timeFormat])
     return (
         <>
